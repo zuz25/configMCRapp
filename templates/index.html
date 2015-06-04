@@ -1,0 +1,96 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/utils.html" as util %}
+{% block content %}
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Navbar Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="navbar.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Mobile Call Recording</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">Recording Configuration Mgmt</a></li>
+              <li><a href="#">Subscriber Mangement</a></li>
+              <li><a href="#">Reporting</a></li>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+    </div> <!-- /container -->
+
+    <div class="container">
+      <h1>Application Status</h1>
+      <p>{{status}}</p>
+      <h2>Call Recording Configurations</h2>
+      <table class = "table table-striped table-hover">
+        <tr>
+          <th>View</th>
+          <th>Edit</th>
+          <th>Delete</th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Creation Timestamp</th>
+          <th>Status</th>
+          <th>Subscriber Management</th>
+         </tr>
+      {% for app in appDetails['applicationInfoList']['applicationInfo'] %}
+        <tr>
+          <td><a href="#" class="ui-btn ui-icon-search ui-btn-icon-left">View</a></td>
+          <td>{{app['applicationId']}} </td>
+          <td>{{app['name']}} </td>
+          <td>{{app['description']}} </td>
+          <td>{{app['revisionList']['revision'][0]['createTimestamp']}} </td>
+          <td>{{app['status']}} </td>
+        </tr>
+      {% endfor %}
+      </table>
+      <h2>This is the sample form (basic)</h2>
+        {{ wtf.quick_form(form, button_map={'submit_button': 'primary'},enctype="multipart/form-data") }}
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../static/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+
+{% endblock %}
+
+
+
+
