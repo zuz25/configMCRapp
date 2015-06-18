@@ -49,10 +49,10 @@
       </nav>
 
     </div> <!-- /container -->
-
+ {{util.flashed_messages()}}
     <div class="container">
-      <h1>Application Status</h1>
-      <p>{{status}}</p>
+     
+
       <h2>Call Recording Configurations</h2>
       <table class = "table table-striped table-hover">
         <tr>
@@ -85,13 +85,12 @@
             <td style="width:36px"><a href="#"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
         </tr>
       {% endfor %}
+              <tr>
+          <td style="width:36px"><a href="provisionApplication"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></td>
+          <td colspan="11">Call Recording Configuration</td>
+        </tr>
       </table>
 
-      <h2>Add Mobile Call Recording Configuration</h2>
-
-      <div class="col-xs-6">
-        {{ wtf.quick_form(form, button_map={'submit_button': 'primary'},enctype="multipart/form-data") }}
-        </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
