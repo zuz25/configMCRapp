@@ -12,7 +12,6 @@ def oAuth_token(client_id,client_secret):
     headers = {'Content-Type': 'application/x-www-form-urlencoded'}
     values = {'client_id' : client_id, 'client_secret' : client_secret, 'scope' : 'ACOMM', 'grant_type' : 'client_credentials'}
     r=requests.post(url,headers=headers, data=values)
-    print(r.text)
     access_token=r.json()['access_token']
     return access_token
 

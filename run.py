@@ -115,8 +115,10 @@ def create_app(configfile=None):
     def provisionApplication():
         form=provApplication()
         access_token=oAuth_token(client_id,client_secret)
+        print('Redirect to provApplication Successful')
         if form.validate_on_submit():
             url=form.url.data
+            print(url)
             #password=form.password.data
             #user=form.user.data
             #interval=form.interval.data
@@ -129,8 +131,14 @@ def create_app(configfile=None):
             #upload_file(beep,applicationName)
             #upload_file(notification,applicationName)
             #upload_file(endCall,applicationName)
+            print('i made it here')
             flash('Your Call Recording Configuration was successfully submitted','info')
+            print('i made it past the flash')
             return render_template('subAppConf.html')
+        else:
+            flash('Failed')
+            print('Failed')
+            render_template('provisionApplication.html',form=form)
         return render_template('provisionApplication.html',form=form)
     
     @app.route('/subAppConf',methods=('GET'))
