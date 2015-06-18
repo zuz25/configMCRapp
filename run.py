@@ -102,6 +102,13 @@ def create_app(configfile=None):
         #print(str(createTimestamp))
         #    print(str(key)+": " + str(value) +"\n")
         #print(appDetails)
+        #flash('critical message', 'critical')
+        #flash('error message', 'error')
+        #flash('warning message', 'warning')
+        #flash('info message', 'info')
+        #flash('debug message', 'debug')
+        #flash('different message', 'different')
+        #flash('uncategorized message')
         return render_template('index.html',appDetails=appDetails)
     
     @app.route('/provisionApplication', methods=('GET', 'POST'))
@@ -122,9 +129,14 @@ def create_app(configfile=None):
             #upload_file(beep,applicationName)
             #upload_file(notification,applicationName)
             #upload_file(endCall,applicationName)
-            flash('Your Call Recording Configuration was successfully submitted')
-            return redirect(url_for('index'))
+            flash('Your Call Recording Configuration was successfully submitted','info')
+            return render_template('subAppConf.html')
         return render_template('provisionApplication.html',form=form)
+    
+    @app.route('/subAppConf',methods=('GET'))
+    def subAppConf():
+        return render_template('subAppConf.html')
+    
     return app
 
 if __name__ == '__main__':
