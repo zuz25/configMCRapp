@@ -116,6 +116,13 @@ def create_app(configfile=None):
         form=provApplication()
         access_token=oAuth_token(client_id,client_secret)
         print('Redirect to provApplication Successful')
+        if form.is_submitted():
+            print("submitted")
+        if form.validate():
+            print("valid")
+        if form.validate_on_submit():
+            flash("Successfully created a new book")
+            return redirect(url_for('.books_show'))
         if form.validate_on_submit():
             url=form.url.data
             print(url)
@@ -131,10 +138,10 @@ def create_app(configfile=None):
             #upload_file(beep,applicationName)
             #upload_file(notification,applicationName)
             #upload_file(endCall,applicationName)
-            print('i made it here')
+            print('i made it into validate on submit')
             flash('Your Call Recording Configuration was successfully submitted','info')
             print('i made it past the flash')
-            return render_template('subAppConf.html')
+            return redirect(url_for('.subAppConf'))
         else:
             flash('Failed')
             print('Failed')
